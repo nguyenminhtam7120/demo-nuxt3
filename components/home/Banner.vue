@@ -4,6 +4,7 @@
 <script>
 import { useProductStore } from '@/stores/product'
 const store = useProductStore();
-console.log(store.products[0].product_name);
+const testLodash = _.slice(store.products, [start = 0], [end = store.products.length])
+console.log(testLodash ? testLodash : 'empty');
 
 </script>

@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+import webpack from 'webpack';
+
 export default defineNuxtConfig({
 
     // server side rendering mode
@@ -17,6 +20,26 @@ export default defineNuxtConfig({
 
     // plugins
     plugins: [],
+
+    builder: "webpack",
+    webpack: {
+        plugins: [
+            new webpack.ProvidePlugin({
+                // global modules
+                _: "lodash",
+                moment: "moment"
+            })
+        ],
+        extractCSS: true,
+        optimization: {
+            splitChunks: {
+                chunks: 'all',
+                automaticNameDelimiter: '.',
+                name: 'ChunkFile',
+                maxSize: 500 * 1024
+            }
+        },
+    },
 
     // build
     build: {
